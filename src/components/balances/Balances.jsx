@@ -20,9 +20,9 @@ const Label = styled.label``
 const Metric = styled.h2``
 
 const NetAPY = styled.div`
-  padding: 8%;
+  padding: 4% 6%;
   border: 5px solid black;
-  border-radius: 100px;
+  border-radius: 80px;
 `
 
 const LimitLabel = styled.span``
@@ -32,6 +32,7 @@ const LimitBarContainer = styled.div`
   height: 20px;
   width: 100%;
   background-color: '#e0e0de';
+  border: 1px solid #333;
   border-radius: 50px;
   margin: 50px;
 `

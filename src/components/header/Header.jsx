@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { keyframes, css } from 'styled-components'
+import { useContractKit } from '@celo-tools/use-contractkit'
 import { FaSourcetree } from 'react-icons/fa'
 import Lang from '../../util/lang'
 
@@ -66,6 +67,7 @@ const ConnectButton = styled.button`
 `
 
 const Header = ({ isSticky }) => {
+  const { address, connect } = useContractKit()
   // const [scrolled, setScrolled] = useState(false)
 
   // const handleScroll = () => {
@@ -87,7 +89,9 @@ const Header = ({ isSticky }) => {
         <FaSourcetree />
         {Lang.header.company}
       </Logo>
-      <ConnectButton data-testid='header-connect-btn'>{Lang.header.connect}</ConnectButton>
+      <ConnectButton onClick={connect} data-testid='header-connect-btn'>
+        {address ? `${address.substr(0, 4)}...${address.substr(-4, 4)}` : Lang.header.connect}
+      </ConnectButton>
     </Wrapper>
   )
 }

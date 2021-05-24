@@ -20,7 +20,8 @@ const Heading = styled.th`
   font-size: 0.8rem;
   text-align: left;
   padding: 1.2rem 1.6rem;
-  color: #333;
+  color: #999;
+  border-top: 1px solid #ccc;
   span {
     white-space: nowrap;
     text-overflow: ellipsis;

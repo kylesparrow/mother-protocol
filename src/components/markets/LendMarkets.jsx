@@ -9,7 +9,8 @@ import { SM_BREAKPOINT } from '../../util/constants'
 
 const LendContainer = styled(Container)`
   box-sizing: border-box;
-  width: 50%;
+  width: calc(50% - 1rem);
+  box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.5);
   @media only screen and (max-width: ${SM_BREAKPOINT}) {
     width: 100%;
   }

@@ -64,8 +64,8 @@ const ToggleCheck = styled.div`
 `
 
 const ToggleContainer = styled.div`
-  width: 50px;
-  height: 24px;
+  width: 40px;
+  height: 15px;
   padding: 0;
   border-radius: 30px;
   background-color: #4d4d4d;
@@ -75,10 +75,10 @@ const ToggleContainer = styled.div`
 const ToggleCircle = styled.div`
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   position: absolute;
-  top: 1px;
-  left: 1px;
-  width: 22px;
-  height: 22px;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
   border: 1px solid #4d4d4d;
   border-radius: 50%;
   background-color: #fafafa;

@@ -14,22 +14,28 @@ const Cell = styled.td`
   }
 `
 
+const TableRow = styled.tr`
+  font-weight: 600;
+  &:hover td {
+    border-top: 1px solid #11bb22;
+    border-bottom: 1px solid #11bb22;
+  }
+`
+
 const TableContent = (props) => {
   const { assets } = props
   return (
     <tbody>
-      <tbody>
-        {assets.map(({ ticker, name, APY, wallet, liquidity }) => {
-          return (
-            <tr key={ticker} data-testid='markets-asset-row'>
-              <Cell data-testid='markets-asset-name'>{name}</Cell>
-              <Cell data-testid='markets-asset-apy'>{APY}</Cell>
-              <Cell data-testid='markets-asset-wallet'>{`${wallet} ${ticker}`}</Cell>
-              <Cell data-testid='markets-asset-liquidity'>{liquidity}</Cell>
-            </tr>
-          )
-        })}
-      </tbody>
+      {assets.map(({ ticker, name, APY, wallet, liquidity }) => {
+        return (
+          <TableRow key={ticker} data-testid='markets-asset-row'>
+            <Cell data-testid='markets-asset-name'>{name}</Cell>
+            <Cell data-testid='markets-asset-apy'>{APY}</Cell>
+            <Cell data-testid='markets-asset-wallet'>{`${wallet} ${ticker}`}</Cell>
+            <Cell data-testid='markets-asset-liquidity'>{liquidity}</Cell>
+          </TableRow>
+        )
+      })}
     </tbody>
   )
 }

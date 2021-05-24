@@ -7,13 +7,15 @@ import { SM_BREAKPOINT } from '../../util/constants'
 
 const MarketsContainer = styled(Container)`
   padding: 1% 3%;
+  display: flex;
+  justify-content: center;
 `
 
 const ResponsiveContainer = styled(Container)`
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: space-between;
   @media only screen and (max-width: ${SM_BREAKPOINT}) {
     flex-flow: column nowrap;
   }

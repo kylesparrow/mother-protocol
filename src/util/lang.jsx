@@ -1,3 +1,6 @@
+import React from 'react'
+import { FaDiscord, FaMedium, FaGithub, FaTwitter } from 'react-icons/fa'
+
 export default {
   header: {
     company: 'Mother Protocol',
@@ -39,9 +42,26 @@ export default {
     copyright: '(c) Mother Protocol, Inc.',
     connect: 'Connect Wallet',
     social: [
-      { name: 'Discord', url: 'https://discord.com/mother-protocol', icon: 'FaDiscord' },
-      { name: 'Github', url: 'https://github.com/kylesparrow/mother-protocol', icon: 'FaGithub' },
-      { name: 'Twitter', url: 'https://twitter.com/MotherCelo', icon: 'FaTwitter' },
+      {
+        name: 'Discord',
+        url: 'https://discord.com/mother-protocol',
+        icon: <FaDiscord />,
+      },
+      {
+        name: 'Medium',
+        url: 'https://medium.com',
+        icon: <FaMedium />,
+      },
+      {
+        name: 'Github',
+        url: 'https://github.com/kylesparrow/mother-protocol',
+        icon: <FaGithub />,
+      },
+      {
+        name: 'Twitter',
+        url: 'https://twitter.com/MotherCelo',
+        icon: <FaTwitter />,
+      },
     ],
   },
 }

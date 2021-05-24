@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaDiscord, FaMedium, FaGithub, FaTwitter } from 'react-icons/fa'
+import ToggleButton from '../components/shared/ToggleButton'
 
 export default {
   header: {
@@ -24,17 +25,17 @@ export default {
     collateral: 'Collateral',
     liquidity: 'Liquidity',
     lendAssets: [
-      { name: 'UBE', ticker: 'UBE', lendAPY: '0%', wallet: '0', liquidity: '561.14' },
-      { name: 'Celo', ticker: 'CELO', lendAPY: '0%', wallet: '0', liquidity: '310.16' },
-      { name: 'US Dollar', ticker: 'USD', lendAPY: '0%', wallet: '0', liquidity: '220.39' },
-      { name: 'Euro', ticker: 'EUR', lendAPY: '0%', wallet: '0', liquidity: '804.32' },
+      { name: 'UBE', ticker: 'UBE', APY: '0%', wallet: '0', liquidity: <ToggleButton /> },
+      { name: 'Celo', ticker: 'CELO', APY: '0%', wallet: '0', liquidity: <ToggleButton /> },
+      { name: 'US Dollar', ticker: 'USD', APY: '0%', wallet: '0', liquidity: <ToggleButton /> },
+      { name: 'Euro', ticker: 'EUR', APY: '0%', wallet: '0', liquidity: <ToggleButton /> },
     ],
     lendMetrics: ['Asset', 'APY', 'Wallet', 'Collateral'],
     borrowAssets: [
-      { name: 'UBE', ticker: 'UBE', borrowAPY: '0%', wallet: '0', liquidity: '127.21' },
-      { name: 'Celo', ticker: 'CELO', borrowAPY: '0%', wallet: '0', liquidity: '623.66' },
-      { name: 'US Dollar', ticker: 'USD', borrowAPY: '0%', wallet: '0', liquidity: '526.2' },
-      { name: 'Euro', ticker: 'EUR', borrowAPY: '0%', wallet: '0', liquidity: '794.26' },
+      { name: 'UBE', ticker: 'UBE', APY: '0%', wallet: '0', liquidity: '127.21' },
+      { name: 'Celo', ticker: 'CELO', APY: '0%', wallet: '0', liquidity: '623.66' },
+      { name: 'US Dollar', ticker: 'USD', APY: '0%', wallet: '0', liquidity: '526.2' },
+      { name: 'Euro', ticker: 'EUR', APY: '0%', wallet: '0', liquidity: '794.26' },
     ],
     borrowMetrics: ['Asset', 'APY', 'Wallet', 'Liquidity'],
   },

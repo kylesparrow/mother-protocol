@@ -10,6 +10,8 @@ const Content = styled(Container)`
   max-width: 100%;
   box-sizing: border-box;
   min-height: 100vh;
+  margin-bottom: 8%;
+  padding-top: 8vh;
 `
 
 const MainContent = ({ element }) => {

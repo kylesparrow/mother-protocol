@@ -6,7 +6,7 @@ import Lang from '../../util/lang'
 describe('Balances component', () => {
   it('renders', () => {
     const { getByTestId } = render(<Balances />)
-    const balances = getByTestId('balances-container')
+    const balances = getByTestId('balances-section')
     expect(balances).toBeInTheDocument()
   })
 

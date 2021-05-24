@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Lang from '../../util/lang'
 import { Container } from '../shared/layout'
+import { Title } from '../shared/interactive'
 import ToggleButton from '../shared/ToggleButton'
 
 const LendContainer = styled(Container)`
@@ -9,14 +10,23 @@ const LendContainer = styled(Container)`
   width: 50%;
 `
 
+const LendTitle = styled(Title)``
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr repeat(2rem, 2rem);
+`
+
 const LendMarkets = () => {
-  const handleClick = (e) => {
-    console.log('TOGGLED!')
-    console.log(e.target)
+  const handleClick = () => {
+    // console.log('TOGGLED!')
+    // console.log(e.target)
   }
 
   return (
     <LendContainer data-testid='lend-markets-container'>
+      <LendTitle>Lend Markets</LendTitle>
+      <Grid />
       <table>
         <thead>
           <tr>

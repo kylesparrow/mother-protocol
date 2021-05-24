@@ -2,15 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 import Lang from '../../util/lang'
 import { Container } from '../shared/layout'
+import { Title } from '../shared/interactive'
 
 const BorrowContainer = styled(Container)`
   box-sizing: border-box;
   width: 50%;
 `
 
+const BorrowTitle = styled(Title)``
+
 const BorrowMarkets = () => {
   return (
     <BorrowContainer data-testid='borrow-markets-container'>
+      <BorrowTitle>Borrow Markets</BorrowTitle>
       <table>
         <thead>
           <tr>

@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Container, Row } from '../shared/layout'
+import { Container } from '../shared/layout'
 import Hero from '../hero/Hero'
 import Balances from '../balances/Balances'
-import LendMarkets from '../lendMarkets/LendMarkets'
-import BorrowMarkets from '../borrowMarkets/BorrowMarkets'
+import Markets from '../markets/Markets'
 
 const Content = styled(Container)`
   max-width: 100%;
@@ -13,18 +12,13 @@ const Content = styled(Container)`
   min-height: 100vh;
 `
 
-const MarketsRow = styled(Row)``
-
 const MainContent = ({ element }) => {
   return (
     <main>
       <Content ref={element}>
         <Hero />
         <Balances />
-        <MarketsRow>
-          <LendMarkets />
-          <BorrowMarkets />
-        </MarketsRow>
+        <Markets />
       </Content>
     </main>
   )

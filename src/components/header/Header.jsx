@@ -90,7 +90,7 @@ const Header = ({ isSticky }) => {
         {Lang.header.company}
       </Logo>
       <ConnectButton onClick={connect} data-testid='header-connect-btn'>
-        {address ? `${address.substr(0, 4)}...${address.substr(-4, 4)}` : Lang.header.connect}
+        {address ? `${address.substr(0, 6)}...${address.substr(-4, 4)}` : Lang.header.connect}
       </ConnectButton>
     </Wrapper>
   )

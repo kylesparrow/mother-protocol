@@ -131,7 +131,7 @@ const Table = ({ headers, minCellWidth, tableContent }) => {
 Table.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
   minCellWidth: PropTypes.number,
-  tableContent: PropTypes.number.isRequired,
+  tableContent: PropTypes.element.isRequired,
 }
 
 Table.defaultProps = {

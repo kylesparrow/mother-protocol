@@ -47,7 +47,7 @@ TableContent.propTypes = {
       ticker: PropTypes.string.isRequired,
       APY: PropTypes.string.isRequired,
       wallet: PropTypes.string.isRequired,
-      liquidity: PropTypes.oneOf([PropTypes.element, PropTypes.string]).isRequired,
+      liquidity: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
     })
   ).isRequired,
 }

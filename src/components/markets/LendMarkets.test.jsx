@@ -12,7 +12,7 @@ describe('LendMarkets component', () => {
 
   it('displays all lend asset rows', () => {
     const { getAllByTestId } = render(<LendMarkets />)
-    const assets = getAllByTestId('lend-markets-asset-name')
+    const assets = getAllByTestId('markets-asset-name')
     expect(assets).toHaveLength(Lang.markets.lendAssets.length)
     const expectedAssets = Lang.markets.lendAssets.map((asset) => asset.name).join(' ')
     assets.forEach((asset) => {
@@ -22,7 +22,7 @@ describe('LendMarkets component', () => {
 
   it('displays all lend asset columns', () => {
     const { getAllByTestId } = render(<LendMarkets />)
-    const columnHeaders = getAllByTestId('lend-markets-column-header')
+    const columnHeaders = getAllByTestId('markets-column-header')
       .map((header) => header.textContent)
       .join(' ')
 

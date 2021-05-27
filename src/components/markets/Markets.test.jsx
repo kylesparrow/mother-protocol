@@ -5,7 +5,7 @@ import Markets from './Markets'
 describe('Markets component', () => {
   it('renders', () => {
     const { getByTestId } = render(<Markets />)
-    const markets = getByTestId('markets-container')
+    const markets = getByTestId('markets-section')
     expect(markets).toBeInTheDocument()
   })
 

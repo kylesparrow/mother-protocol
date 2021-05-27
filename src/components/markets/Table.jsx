@@ -39,11 +39,14 @@ const ResizeHandle = styled.div`
   top: 0;
   z-index: 1;
   border-right: 2px solid transparent;
-  /* height: ${({ tableHeight }) => tableHeight && tableHeight}; */
+  height: ${({ tableHeight }) => tableHeight && tableHeight};
   &:hover {
     border-color: #ccc;
   }
-  border-color: ${({ isActive }) => isActive && '#517ea5'};
+
+  &:active {
+    border-color: #517ea5;
+  }
 `
 
 const createHeaders = (headers) => {
@@ -64,7 +67,6 @@ const Table = ({ headers, minCellWidth, tableContent }) => {
   }, [])
 
   const onMouseDown = (index) => {
-    // TODO: fix table resize console.log('MOUSE DOWN')
     setActiveIndex(index)
   }
 
@@ -113,7 +115,7 @@ const Table = ({ headers, minCellWidth, tableContent }) => {
             <Heading ref={ref} key={text} data-testid='markets-column-header'>
               <span>{text}</span>
               <ResizeHandle
-                style={{ height: `${tableHeight}` }}
+                tableHeight={tableHeight}
                 onMouseDown={() => onMouseDown(i)}
                 isActive={activeIndex === i}
               />

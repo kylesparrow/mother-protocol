@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Container } from '../shared/layout'
 import Hero from '../hero/Hero'
@@ -10,12 +9,14 @@ const Content = styled(Container)`
   max-width: 100%;
   box-sizing: border-box;
   min-height: 100vh;
+  margin-bottom: 8%;
+  padding-top: 8vh;
 `
 
-const MainContent = ({ element }) => {
+const MainContent = () => {
   return (
-    <main>
-      <Content ref={element}>
+    <main data-testid='main-content-section'>
+      <Content>
         <Hero />
         <Balances />
         <Markets />
@@ -24,12 +25,4 @@ const MainContent = ({ element }) => {
   )
 }
 
-MainContent.propTypes = {
-  element: PropTypes.oneOfType([
-    // Either a function
-    PropTypes.func,
-    // Or the instance of a DOM native element (see the note about SSR)
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  ]).isRequired,
-}
 export default MainContent

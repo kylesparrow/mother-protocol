@@ -1,37 +1,35 @@
 import React from 'react'
 import styled from 'styled-components'
 import Lang from '../../util/lang'
+import Table from './Table'
 import { Container } from '../shared/layout'
+import { Title } from '../shared/interactive'
+import { SM_BREAKPOINT } from '../../util/constants'
+import TableContent from './TableContent'
 
 const BorrowContainer = styled(Container)`
   box-sizing: border-box;
-  width: 50%;
+  width: calc(50% - 1rem);
+  box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.5);
+  @media only screen and (max-width: ${SM_BREAKPOINT}) {
+    width: 100%;
+  }
+`
+
+const BorrowTitle = styled(Title)`
+  font-size: 1.3rem;
+  text-align: left;
+  padding: 1.2rem 1.6rem;
 `
 
 const BorrowMarkets = () => {
   return (
     <BorrowContainer data-testid='borrow-markets-container'>
-      <table>
-        <thead>
-          <tr>
-            {Lang.markets.borrowMetrics.map((metric) => (
-              <td key={metric} data-testid='borrow-markets-column-header'>
-                {metric}
-              </td>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {Lang.markets.borrowAssets.map((asset) => (
-            <tr key={asset.ticker} data-testid='borrow-markets-asset-row'>
-              <td data-testid='borrow-markets-asset-name'>{asset.name}</td>
-              <td data-testid='borrow-markets-asset-apy'>{asset.borrowAPY}</td>
-              <td data-testid='borrow-markets-asset-wallet'>{`${asset.wallet} ${asset.ticker}`}</td>
-              <td data-testid='borrow-markets-asset-liquidity'>{`$${asset.liquidity}M`}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <BorrowTitle>Borrow Markets</BorrowTitle>
+      <Table
+        headers={Lang.markets.borrowMetrics}
+        tableContent={<TableContent assets={Lang.markets.borrowAssets} />}
+      />
     </BorrowContainer>
   )
 }

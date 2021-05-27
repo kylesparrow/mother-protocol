@@ -15,7 +15,7 @@ const Content = styled(Container)`
 
 const MainContent = () => {
   return (
-    <main>
+    <main data-testid='main-content-section'>
       <Content>
         <Hero />
         <Balances />

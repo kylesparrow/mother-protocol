@@ -4,6 +4,7 @@ import { useContractKit } from '@celo-tools/use-contractkit'
 import { FaSourcetree } from 'react-icons/fa'
 import { Button } from '../shared/interactive'
 import Lang from '../../util/lang'
+import truncateAddress from '../../util/format'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -35,7 +36,39 @@ const Logo = styled.div`
 `
 
 const Header = () => {
-  const { address, connect } = useContractKit()
+  const contractKit = useContractKit()
+  console.log('CONTRACT KIT: ', contractKit)
+  const { connect, address, kit, getConnectedKit, performActions, network, updateNetwork } =
+    contractKit
+
+  async function getAccountSummary() {
+    const accounts = await kit.contracts.getAccounts()
+    await accounts.getAccountSummary(address)
+  }
+
+  async function transfer() {
+    const xKit = await getConnectedKit()
+    const cUSD = await xKit.contracts.getStableToken()
+    await cUSD.transfer(process.env.BORROW_POOL_ADDRESS, 10000).sendAndWaitForReceipt()
+  }
+
+  // return <button onClick={transfer}>Transfer</button>
+
+  async function transferAndConfirm() {
+    await performActions(async (kit) => {
+      const cUSD = await kit.contracts.getStableToken()
+      await cUSD.transfer(process.env.BORROW_POOL_ADDRESS, 10000).sendAndWaitForReceipt()
+    })
+  }
+
+  // return <button onClick={transferAndConfirm}>Transfer</button>
+
+  async function onNetworkChange() {
+    const selection = 'Mainnet'
+    await updateNetwork(selection)
+  }
+
+  // return <div>We are currently connected to {network}</div>
 
   return (
     <header>
@@ -45,7 +78,7 @@ const Header = () => {
           <Company>{Lang.header.company}</Company>
         </Logo>
         <Button onClick={connect} data-testid='header-connect-btn'>
-          {address ? `${address.substr(0, 6)}...${address.substr(-4, 4)}` : Lang.header.connect}
+          {address ? truncateAddress(address) : Lang.header.connect}
         </Button>
       </Wrapper>
     </header>

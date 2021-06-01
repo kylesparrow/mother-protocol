@@ -139,7 +139,7 @@ const BalanceModal = (props) => {
       </Button>
       <ReactModal
         isOpen={showModal}
-        contentLabel='Mother balances example'
+        contentLabel='Mother balances'
         onRequestClose={() => setShowModal(false)}
         shouldCloseOnOverlayClick
         style={ModalContentStyles}

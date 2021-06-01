@@ -135,7 +135,7 @@ const BalanceModal = (props) => {
   return (
     <>
       <Button onClick={() => setShowModal(true)} data-testid='header-mother-balance'>
-        BAL
+        {formatTokens(unclaimedBal)}
       </Button>
       <ReactModal
         isOpen={showModal}

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useContractKit } from '@celo-tools/use-contractkit'
 import { FaSourcetree } from 'react-icons/fa'
@@ -8,7 +7,7 @@ import { Container, Row } from '../shared/layout'
 import { Button } from '../shared/interactive'
 import BalanceModal from './BalanceModal'
 import Lang from '../../util/lang'
-import { formatTokens, truncateAddress } from '../../util/format'
+import { truncateAddress } from '../../util/format'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -39,12 +38,27 @@ const Logo = styled.div`
   flex-flow: row nowrap;
 `
 
-const Header = (props) => {
-  const { unclaimedBal } = props
+const Header = () => {
   ReactModal.setAppElement('#root')
   const contractKit = useContractKit()
-  // console.log('CONTRACT KIT: ', contractKit)
   const { connect, address } = contractKit
+  // console.log('NETWORK: ', network)
+
+  // const getAccountSummary = useCallback(async () => {
+  //   const accounts = await kit.contracts.getAccounts()
+  //   const summary = await accounts.getAccountSummary(address)
+  //   console.log('ACCOUNTS IN USE CALLBACK: ', summary)
+  // }, [address, kit.contracts])
+
+  // useEffect(async () => {
+  //   // const summary = getAccountSummary()
+  //   // const kit = await getConnectedKit()
+  //   const accounts = await kit.contracts.getAccounts()
+  //   console.log('ACCOUNTS: ', accounts, kit.contracts)
+  //   console.log('ADDRESS: ', address)
+  //   const summary = await accounts.getAccountSummary(address)
+  //   console.log('SUMMARY: ', summary)
+  // }, [])
 
   return (
     <header>
@@ -55,7 +69,7 @@ const Header = (props) => {
         </Logo>
         <Container>
           <Row>
-            {address && <BalanceModal>{formatTokens(unclaimedBal)}</BalanceModal>}
+            {address && <BalanceModal />}
             <Button onClick={connect} data-testid='header-connect-btn'>
               {address ? truncateAddress(address) : Lang.header.connect}
             </Button>
@@ -64,14 +78,6 @@ const Header = (props) => {
       </Wrapper>
     </header>
   )
-}
-
-Header.propTypes = {
-  unclaimedBal: PropTypes.number,
-}
-
-Header.defaultProps = {
-  unclaimedBal: 0.0,
 }
 
 export default Header

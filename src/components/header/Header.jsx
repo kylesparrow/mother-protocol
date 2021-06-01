@@ -2,8 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { useContractKit } from '@celo-tools/use-contractkit'
 import { FaSourcetree } from 'react-icons/fa'
+import ReactModal from 'react-modal'
+import { Container, Row } from '../shared/layout'
 import { Button } from '../shared/interactive'
+import BalanceModal from './BalanceModal'
 import Lang from '../../util/lang'
+import { truncateAddress } from '../../util/format'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -15,7 +19,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   padding: 2%;
   width: 100%;
-  height: 8vh;
+  height: 8%;
   box-sizing: border-box;
   background-color: #000;
   color: #fff;
@@ -35,7 +39,26 @@ const Logo = styled.div`
 `
 
 const Header = () => {
-  const { address, connect } = useContractKit()
+  ReactModal.setAppElement('#root')
+  const contractKit = useContractKit()
+  const { connect, address } = contractKit
+  // console.log('NETWORK: ', network)
+
+  // const getAccountSummary = useCallback(async () => {
+  //   const accounts = await kit.contracts.getAccounts()
+  //   const summary = await accounts.getAccountSummary(address)
+  //   console.log('ACCOUNTS IN USE CALLBACK: ', summary)
+  // }, [address, kit.contracts])
+
+  // useEffect(async () => {
+  //   // const summary = getAccountSummary()
+  //   // const kit = await getConnectedKit()
+  //   const accounts = await kit.contracts.getAccounts()
+  //   console.log('ACCOUNTS: ', accounts, kit.contracts)
+  //   console.log('ADDRESS: ', address)
+  //   const summary = await accounts.getAccountSummary(address)
+  //   console.log('SUMMARY: ', summary)
+  // }, [])
 
   return (
     <header>
@@ -44,9 +67,14 @@ const Header = () => {
           <FaSourcetree />
           <Company>{Lang.header.company}</Company>
         </Logo>
-        <Button onClick={connect} data-testid='header-connect-btn'>
-          {address ? `${address.substr(0, 6)}...${address.substr(-4, 4)}` : Lang.header.connect}
-        </Button>
+        <Container>
+          <Row>
+            {address && <BalanceModal />}
+            <Button onClick={connect} data-testid='header-connect-btn'>
+              {address ? truncateAddress(address) : Lang.header.connect}
+            </Button>
+          </Row>
+        </Container>
       </Wrapper>
     </header>
   )

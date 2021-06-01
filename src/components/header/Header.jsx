@@ -1,10 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useContractKit } from '@celo-tools/use-contractkit'
 import { FaSourcetree } from 'react-icons/fa'
+import ReactModal from 'react-modal'
+import { Container, Row } from '../shared/layout'
 import { Button } from '../shared/interactive'
+import BalanceModal from './BalanceModal'
 import Lang from '../../util/lang'
-import truncateAddress from '../../util/format'
+import { formatTokens, truncateAddress } from '../../util/format'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -16,7 +20,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   padding: 2%;
   width: 100%;
-  height: 8vh;
+  height: 8%;
   box-sizing: border-box;
   background-color: #000;
   color: #fff;
@@ -35,40 +39,12 @@ const Logo = styled.div`
   flex-flow: row nowrap;
 `
 
-const Header = () => {
+const Header = (props) => {
+  const { unclaimedBal } = props
+  ReactModal.setAppElement('#root')
   const contractKit = useContractKit()
-  console.log('CONTRACT KIT: ', contractKit)
-  const { connect, address, kit, getConnectedKit, performActions, network, updateNetwork } =
-    contractKit
-
-  async function getAccountSummary() {
-    const accounts = await kit.contracts.getAccounts()
-    await accounts.getAccountSummary(address)
-  }
-
-  async function transfer() {
-    const xKit = await getConnectedKit()
-    const cUSD = await xKit.contracts.getStableToken()
-    await cUSD.transfer(process.env.BORROW_POOL_ADDRESS, 10000).sendAndWaitForReceipt()
-  }
-
-  // return <button onClick={transfer}>Transfer</button>
-
-  async function transferAndConfirm() {
-    await performActions(async (kit) => {
-      const cUSD = await kit.contracts.getStableToken()
-      await cUSD.transfer(process.env.BORROW_POOL_ADDRESS, 10000).sendAndWaitForReceipt()
-    })
-  }
-
-  // return <button onClick={transferAndConfirm}>Transfer</button>
-
-  async function onNetworkChange() {
-    const selection = 'Mainnet'
-    await updateNetwork(selection)
-  }
-
-  // return <div>We are currently connected to {network}</div>
+  // console.log('CONTRACT KIT: ', contractKit)
+  const { connect, address } = contractKit
 
   return (
     <header>
@@ -77,12 +53,25 @@ const Header = () => {
           <FaSourcetree />
           <Company>{Lang.header.company}</Company>
         </Logo>
-        <Button onClick={connect} data-testid='header-connect-btn'>
-          {address ? truncateAddress(address) : Lang.header.connect}
-        </Button>
+        <Container>
+          <Row>
+            {address && <BalanceModal>{formatTokens(unclaimedBal)}</BalanceModal>}
+            <Button onClick={connect} data-testid='header-connect-btn'>
+              {address ? truncateAddress(address) : Lang.header.connect}
+            </Button>
+          </Row>
+        </Container>
       </Wrapper>
     </header>
   )
+}
+
+Header.propTypes = {
+  unclaimedBal: PropTypes.number,
+}
+
+Header.defaultProps = {
+  unclaimedBal: 0.0,
 }
 
 export default Header

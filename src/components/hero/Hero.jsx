@@ -6,7 +6,7 @@ const Background = styled.div`
   min-height: 600px;
   position: relative;
   background-size: cover;
-  background-image: linear-gradient(green, yellow);
+  background-image: url('../mother-protocol-bg.png');
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,10 +43,14 @@ const MarketsLinkButton = styled.a`
   border: 2px solid #fff;
   cursor: pointer;
   text-decoration: none;
-  color: #666;
-  background: #fff;
+  color: #ddd;
+  background: #000;
   font-size: 1.5rem;
   font-weight: 700;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
 `
 
 const Hero = () => {

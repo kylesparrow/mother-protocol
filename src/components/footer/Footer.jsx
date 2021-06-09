@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Lang from '../../util/lang'
 import { Container, Row } from '../shared/layout'
-import { Button } from '../shared/interactive'
 
 const FooterContainer = styled(Container)`
   padding: 1% 2%;
@@ -17,15 +16,6 @@ const Copyright = styled.span`
   display: flex;
   align-items: center;
   color: #ddd;
-`
-
-const ActionContainer = styled(Container)`
-  width: 35%;
-`
-
-const ButtonRow = styled(Row)`
-  align-items: center;
-  justify-content: space-between;
 `
 
 const Social = styled(Row)`
@@ -46,32 +36,19 @@ const Link = styled.a`
   }
 `
 
-const ConnectButton = styled(Button)`
-  padding: 0.5rem 1rem;
-`
-
 const Footer = () => {
-  const handleClick = () => {
-    // console.log(e)
-  }
-
   return (
     <footer>
       <FooterContainer data-testid='footer-container'>
         <StyledRow>
           <Copyright data-testid='footer-copyright'>{Lang.footer.copyright}</Copyright>
-          <ActionContainer>
-            <ButtonRow>
-              <Social>
-                {Lang.footer.social.map((link) => (
-                  <Link key={link.name} href={link.url} data-testid='footer-social-link'>
-                    {link.icon}
-                  </Link>
-                ))}
-              </Social>
-              <ConnectButton onClick={handleClick}>{Lang.footer.connect}</ConnectButton>
-            </ButtonRow>
-          </ActionContainer>
+          <Social>
+            {Lang.footer.social.map((link) => (
+              <Link key={link.name} href={link.url} data-testid='footer-social-link'>
+                {link.icon}
+              </Link>
+            ))}
+          </Social>
         </StyledRow>
       </FooterContainer>
     </footer>

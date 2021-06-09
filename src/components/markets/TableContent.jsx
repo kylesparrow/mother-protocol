@@ -16,9 +16,13 @@ const Cell = styled.td`
 
 const TableRow = styled.tr`
   font-weight: 600;
+  td {
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+  }
   &:hover td {
-    border-top: 1px solid #11bb22;
-    border-bottom: 1px solid #11bb22;
+    border-top: 3px solid #11bb22;
+    border-bottom: 3px solid #11bb22;
   }
 `
 

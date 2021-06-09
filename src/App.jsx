@@ -1,6 +1,10 @@
+/* eslint-disable */
 import React from 'react'
 import styled from 'styled-components'
-import { ContractKitProvider, Alfajores } from '@celo-tools/use-contractkit'
+import {
+  ContractKitProvider,
+  Alfajores, Mainnet
+} from '@celo-tools/use-contractkit'
 import '@celo-tools/use-contractkit/lib/styles.css'
 import ReactModal from 'react-modal'
 import { Container } from './components/shared/layout'
@@ -19,7 +23,7 @@ export default function WrappedApp() {
       dappName='Mother Protocol'
       dappDescription='Mother Protocol Celo app'
       dappUrl='https://mother-protocol.com'
-      networks={[Alfajores]}
+      networks={[Mainnet, Alfajores]}
     >
       <App />
     </ContractKitProvider>
@@ -27,7 +31,6 @@ export default function WrappedApp() {
 }
 
 function App() {
-  // const { connect, address } = useContractKit()
   return (
     <AppContainer data-testid='app'>
       <Header />

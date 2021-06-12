@@ -14,7 +14,7 @@ export const formatUSD = (amount) => {
   return formatted
 }
 
-export const formatTokens = (amount, precision = 4) => {
+export const formatToken = (amount, precision = 4) => {
   // if (!amount) return '0.0000'
   let formatted = amount
 

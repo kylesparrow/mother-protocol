@@ -9,6 +9,8 @@ import {
 } from './actionTypes'
 import Coins from '../components/shared/Coins'
 import BalanceDialog from '../components/balances/BalanceDialog'
+import MarketDialog from '../components/markets/MarketDialog'
+import { LEND, BORROW } from '../util/constants'
 
 export const initialState = {
   isOpen: false,
@@ -55,7 +57,7 @@ export default function modalReducer(state, action) {
             {Coins[action.token].name}
           </span>
         ),
-        content: '',
+        content: <MarketDialog token={action.token} direction={LEND} />,
       }
     case BORROW_CONTENT:
       return {
@@ -65,7 +67,7 @@ export default function modalReducer(state, action) {
             {Coins[action.token].name}
           </span>
         ),
-        content: '',
+        content: <MarketDialog token={action.token} direction={BORROW} />,
       }
     default:
       return state

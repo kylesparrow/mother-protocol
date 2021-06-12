@@ -17,12 +17,14 @@ import {
 import { LEND, BORROW } from '../../util/constants'
 
 const ModalContentStyles = {
+  // FIXME: balance modal needs 8rem margin top
+  // FIXME: balance modal needs 22rem width
   content: {
     position: 'static',
-    marginTop: '8rem',
+    marginTop: '4rem',
     marginRight: 'auto',
     marginLeft: 'auto',
-    width: '22rem',
+    width: '18rem',
     minHeight: '22rem',
     maxHeight: '30rem',
     borderRadius: '10px',
@@ -69,7 +71,7 @@ const ModalBody = styled(Container)`
   justify-content: space-between;
   align-items: stretch;
   height: 100%;
-  padding: 2rem 3rem 1rem;
+  padding: 0;
 `
 
 const BaseModal = forwardRef((props, ref) => {
@@ -92,9 +94,9 @@ const BaseModal = forwardRef((props, ref) => {
       openMarketModal: (token, direction) => {
         console.log('OPEN MARKET: ', token, direction)
         if (direction === LEND) {
-          dispatchModal({ type: BORROW_CONTENT, token })
-        } else if (direction === BORROW) {
           dispatchModal({ type: LEND_CONTENT, token })
+        } else if (direction === BORROW) {
+          dispatchModal({ type: BORROW_CONTENT, token })
         }
         open()
       },
@@ -109,10 +111,11 @@ const BaseModal = forwardRef((props, ref) => {
       style={ModalContentStyles}
     >
       <Column>
-        <Header>
-          <ModalTitle>{modal.title}</ModalTitle>
+        <Header data-testid='modal-header'>
+          <ModalTitle data-testid='modal-title'>{modal.title}</ModalTitle>
           <CloseX>
             <CloseButton
+              data-testid='modal-close-btn'
               onClick={() => {
                 ref.current.testMethod()
                 close()
@@ -122,7 +125,7 @@ const BaseModal = forwardRef((props, ref) => {
             </CloseButton>
           </CloseX>
         </Header>
-        <ModalBody>{modal.content}</ModalBody>
+        <ModalBody data-testid='modal-body'>{modal.content}</ModalBody>
       </Column>
     </ReactModal>
   )

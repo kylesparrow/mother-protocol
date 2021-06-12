@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import Lang from '../../util/lang'
+import natureImg from '../../assets/mother-protocol-bg.png'
 
 const Background = styled.div`
   min-height: 600px;
   position: relative;
   background-size: cover;
-  background-image: url('../mother-protocol-bg.png');
+  background-image: url(${natureImg});
   display: flex;
   flex-direction: column;
   align-items: center;

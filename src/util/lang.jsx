@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaDiscord, FaMedium, FaGithub, FaTwitter } from 'react-icons/fa'
 import ToggleButton from '../components/shared/ToggleButton'
+import { LEND, BORROW, WITHDRAW, REPAY } from './constants'
 
 export default {
   header: {
@@ -18,7 +19,6 @@ export default {
     limit: 'Borrow Limit',
   },
   markets: {
-    title: '',
     assets: 'Assets',
     APY: 'APY',
     wallet: 'Wallet',
@@ -31,7 +31,6 @@ export default {
       { name: 'Euro', ticker: 'cEUR', APY: '0%', wallet: '0', liquidity: <ToggleButton /> },
     ],
     lendMetrics: ['Asset', 'APY', 'Wallet', 'Collateral'],
-    lendActionTabs: ['Lend', 'Withdraw'],
     borrowAssets: [
       { name: 'UBE', ticker: 'UBE', APY: '0%', wallet: '0', liquidity: '127.21' },
       { name: 'Celo', ticker: 'CELO', APY: '0%', wallet: '0', liquidity: '623.66' },
@@ -39,7 +38,16 @@ export default {
       { name: 'Euro', ticker: 'cEUR', APY: '0%', wallet: '0', liquidity: '794.26' },
     ],
     borrowMetrics: ['Asset', 'APY', 'Wallet', 'Liquidity'],
-    borrowActionTabs: ['Borrow', 'Repay'],
+    actionTabs: {
+      LEND: [LEND, WITHDRAW],
+      BORROW: [BORROW, REPAY],
+    },
+    labels: {
+      distributionAPY: 'Distribution APY',
+      borrowLimit: 'Borrow Limit',
+      borrowBalance: 'Borrow Balance',
+      borrowUsed: 'Borrow Limit Used',
+    },
     assetNotEnabledError:
       'To Supply or Repay this token to the Mother Protocol, you first need to enable it.',
   },

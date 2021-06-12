@@ -1,13 +1,15 @@
+/* eslint-disable */
 import React from 'react'
+import PropTypes from "prop-types"
 import styled from 'styled-components'
 import { useContractKit } from '@celo-tools/use-contractkit'
 import { FaSourcetree } from 'react-icons/fa'
-import ReactModal from 'react-modal'
 import { Container, Row } from '../shared/layout'
 import { Button } from '../shared/interactive'
-import BalanceModal from './BalanceModal'
 import Lang from '../../util/lang'
 import { truncateAddress } from '../../util/format'
+import useAddress from '../../hooks/useAddress'
+import useAccounts from '../../hooks/useAccounts'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -38,27 +40,14 @@ const Logo = styled.div`
   flex-flow: row nowrap;
 `
 
-const Header = () => {
-  ReactModal.setAppElement('#root')
-  const contractKit = useContractKit()
-  const { connect, address } = contractKit
-  // console.log('NETWORK: ', network)
+const Header = (props) => {
+  const {
+    momBalance,
+    modalRef,
+  } = props
+  const { connect, address } = useContractKit()
 
-  // const getAccountSummary = useCallback(async () => {
-  //   const accounts = await kit.contracts.getAccounts()
-  //   const summary = await accounts.getAccountSummary(address)
-  //   console.log('ACCOUNTS IN USE CALLBACK: ', summary)
-  // }, [address, kit.contracts])
 
-  // useEffect(async () => {
-  //   // const summary = getAccountSummary()
-  //   // const kit = await getConnectedKit()
-  //   const accounts = await kit.contracts.getAccounts()
-  //   console.log('ACCOUNTS: ', accounts, kit.contracts)
-  //   console.log('ADDRESS: ', address)
-  //   const summary = await accounts.getAccountSummary(address)
-  //   console.log('SUMMARY: ', summary)
-  // }, [])
 
   return (
     <header>
@@ -69,8 +58,13 @@ const Header = () => {
         </Logo>
         <Container>
           <Row>
-            {address && <BalanceModal />}
-            <Button onClick={connect} data-testid='header-connect-btn'>
+            {address &&
+              <Button onClick={() => modalRef.current.openBalanceModal()}>{momBalance}</Button>
+            }
+            <Button
+              onClick={connect}
+              data-testid='header-connect-btn'
+            >
               {address ? truncateAddress(address) : Lang.header.connect}
             </Button>
           </Row>
@@ -80,4 +74,15 @@ const Header = () => {
   )
 }
 
+Header.propTypes = {
+  momBalance: PropTypes.number,
+  modalRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+]).isRequired,
+}
+
+Header.defaultProps = {
+  momBalance: 0.0,
+}
 export default Header

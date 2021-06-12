@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useReducer, forwardRef } from 'react'
 import styled from 'styled-components'
 import {
   ContractKitProvider,
@@ -11,13 +11,35 @@ import { Container } from './components/shared/layout'
 import Header from './components/header/Header'
 import MainContent from './components/mainContent/MainContent'
 import Footer from './components/footer/Footer'
+import BaseModal from './components/shared/BaseModal'
+import walletReducer, { initialState as initialWalletState } from './reducers/wallet.reducer'
+import { UPDATE_ACCOUNTS, UPDATE_ADDRESS, UPDATE_SUMMARY } from './reducers/actionTypes'
 
 const AppContainer = styled(Container)`
   text-align: center;
 `
 
+function App() {
+  ReactModal.setAppElement('#root')
+  const modalRef = React.useRef()
+
+  return (
+    <AppContainer data-testid='app'>
+      <BaseModal ref={modalRef} />
+      <Header
+        modalRef={modalRef}
+      />
+      <MainContent
+        modalRef={modalRef}
+      />
+      <Footer />
+    </AppContainer>
+  )
+}
+
 export default function WrappedApp() {
-  React.useEffect(() => ReactModal.setAppElement('#root'))
+
+
   return (
     <ContractKitProvider
       dappName='Mother Protocol'
@@ -30,12 +52,3 @@ export default function WrappedApp() {
   )
 }
 
-function App() {
-  return (
-    <AppContainer data-testid='app'>
-      <Header />
-      <MainContent />
-      <Footer />
-    </AppContainer>
-  )
-}

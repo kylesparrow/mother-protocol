@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Container } from '../shared/layout'
 import Hero from '../hero/Hero'
@@ -13,16 +14,24 @@ const Content = styled(Container)`
   padding-top: 8vh;
 `
 
-const MainContent = () => {
+const MainContent = (props) => {
+  const { modalRef } = props
   return (
     <main data-testid='main-content-section'>
       <Content>
         <Hero />
         <Balances />
-        <Markets />
+        <Markets modalRef={modalRef} />
       </Content>
     </main>
   )
+}
+
+MainContent.propTypes = {
+  modalRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]).isRequired,
 }
 
 export default MainContent

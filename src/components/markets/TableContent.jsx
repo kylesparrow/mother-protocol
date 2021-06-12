@@ -27,12 +27,17 @@ const TableRow = styled.tr`
 `
 
 const TableContent = (props) => {
-  const { assets } = props
+  const { assets, modalRef, direction } = props
+
   return (
     <tbody>
       {assets.map(({ ticker, name, APY, wallet, liquidity }) => {
         return (
-          <TableRow key={ticker} data-testid='markets-asset-row'>
+          <TableRow
+            key={ticker}
+            onClick={() => modalRef.current.openMarketModal(ticker, direction)}
+            data-testid='markets-asset-row'
+          >
             <Cell data-testid='markets-asset-name'>{name}</Cell>
             <Cell data-testid='markets-asset-apy'>{APY}</Cell>
             <Cell data-testid='markets-asset-wallet'>{`${wallet} ${ticker}`}</Cell>
@@ -54,6 +59,13 @@ TableContent.propTypes = {
       liquidity: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
     })
   ).isRequired,
+  modalRef: PropTypes.oneOfType([
+    // Either a function
+    PropTypes.func,
+    // Or the instance of a DOM native element (see the note about SSR)
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]).isRequired,
+  direction: PropTypes.string.isRequired,
 }
 
 export default TableContent

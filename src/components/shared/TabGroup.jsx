@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Row } from './layout'
 import Tab from './Tab'
+import { BORROW } from '../../util/constants'
 
 const TabList = styled.ul`
   margin: 0;
@@ -18,7 +19,11 @@ const TabListItem = styled.li`
   width: 50%;
   text-align: center;
   font-weight: 700;
+  cursor: pointer;
 `
+
+const borrowActiveColor = '#9669ed'
+const lendActiveColor = '#11bb11'
 
 const TabGroup = (props) => {
   const { tabs, selected, setSelected } = props
@@ -28,7 +33,12 @@ const TabGroup = (props) => {
       <TabList>
         {tabs.map((name) => (
           <TabListItem key={name} onClick={() => setSelected(name)}>
-            <Tab isSelected={name === selected}>{name}</Tab>
+            <Tab
+              isSelected={name === selected}
+              active={tabs.includes(BORROW) ? borrowActiveColor : lendActiveColor}
+            >
+              {name}
+            </Tab>
           </TabListItem>
         ))}
       </TabList>

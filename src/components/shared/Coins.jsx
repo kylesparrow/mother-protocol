@@ -5,7 +5,7 @@ import celoIcon from '../../assets/CELO-color-icon.svg'
 import cUSDIcon from '../../assets/cUSD-color-icon.svg'
 import cEURIcon from '../../assets/cEUR-color-icon.svg'
 // import motherIcon from '../../assets/MOM-color-icon.svg'
-import ubeIcon from '../../assets/UBE-color-icon.png'
+import ubeIcon from '../../assets/UBE-color-icon.svg'
 
 export default {
   MOM: {
@@ -16,7 +16,18 @@ export default {
   UBE: {
     name: 'Ubeswap',
     ticker: 'UBE',
-    icon: <ExchangeIcon image={ubeIcon} />,
+    icon: (
+      <ExchangeIcon
+        image={ubeIcon}
+        style={{
+          height: '25px',
+          width: '25px',
+          fontSize: '1rem',
+          borderRadius: 0,
+          padding: '0.3rem',
+        }}
+      />
+    ),
   },
   CELO: {
     name: 'Celo',

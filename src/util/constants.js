@@ -1,2 +1,6 @@
-export const MED_BREAKPOINT = '900px'
-export const SM_BREAKPOINT = '600px'
+export const PHONE_UPPER_BOUND = '600px'
+export const TABLET_PORTRAIT_UPPER_BOUND = '900px'
+export const TABLET_LANDSCAPE_UPPER_BOUND = '1200px'
+export const DESKTOP_UPPER_BOUND = '1800px'
+export const LEND = 'LEND'
+export const BORROW = 'BORROW'

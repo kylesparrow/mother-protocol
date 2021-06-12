@@ -1,18 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Container } from './layout'
+import { Row } from './layout'
 import Tab from './Tab'
 
-const TabList = styled.ul``
+const TabList = styled.ul`
+  margin: 0;
+  margin-block: 0;
+  padding-inline: 0;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+`
 
-const TabListItem = styled.li``
+const TabListItem = styled.li`
+  width: 50%;
+  text-align: center;
+  font-weight: 700;
+`
 
 const TabGroup = (props) => {
   const { tabs, selected, setSelected } = props
 
   return (
-    <Container>
+    <Row>
       <TabList>
         {tabs.map((name) => (
           <TabListItem key={name} onClick={() => setSelected(name)}>
@@ -20,7 +32,7 @@ const TabGroup = (props) => {
           </TabListItem>
         ))}
       </TabList>
-    </Container>
+    </Row>
   )
 }
 

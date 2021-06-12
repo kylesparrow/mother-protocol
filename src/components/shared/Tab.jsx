@@ -6,7 +6,7 @@ import { Label } from './interactive'
 
 const TabContainer = styled(Container)`
   border-bottom: ${({ isSelected }) =>
-    isSelected ? '1px solid #11bb11' : '1px solid transparent'};
+    isSelected ? '3px solid #11bb11' : '1px solid transparent'};
 `
 
 const TabLabel = styled(Label)`

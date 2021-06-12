@@ -1,8 +1,6 @@
 import React, { useReducer, forwardRef, useImperativeHandle } from 'react'
-// import PropTypes from 'prop-types'
 import ReactModal from 'react-modal'
 import styled from 'styled-components'
-// import { useContractKit } from '@celo-tools/use-contractkit'
 import { AiOutlineClose } from 'react-icons/ai'
 import modalReducer, { initialState as initialModalState } from '../../reducers/modal.reducer'
 import { Column, Container, Row } from './layout'
@@ -20,13 +18,13 @@ const ModalContentStyles = {
   // FIXME: balance modal needs 8rem margin top
   // FIXME: balance modal needs 22rem width
   content: {
-    position: 'static',
-    marginTop: '4rem',
+    position: 'fixed',
+    marginTop: '0.5rem',
     marginRight: 'auto',
     marginLeft: 'auto',
     width: '18rem',
     minHeight: '22rem',
-    maxHeight: '30rem',
+    maxHeight: '36rem',
     borderRadius: '10px',
     padding: 0,
     zIndex: 101,
@@ -77,8 +75,6 @@ const ModalBody = styled(Container)`
 const BaseModal = forwardRef((props, ref) => {
   const [modal, dispatchModal] = useReducer(modalReducer, initialModalState)
 
-  // const { address, kit } = useContractKit()
-
   const open = () => dispatchModal({ type: OPEN_MODAL })
   const close = () => dispatchModal({ type: CLOSE_MODAL })
 
@@ -92,7 +88,6 @@ const BaseModal = forwardRef((props, ref) => {
         open()
       },
       openMarketModal: (token, direction) => {
-        console.log('OPEN MARKET: ', token, direction)
         if (direction === LEND) {
           dispatchModal({ type: LEND_CONTENT, token })
         } else if (direction === BORROW) {
@@ -132,17 +127,5 @@ const BaseModal = forwardRef((props, ref) => {
 })
 
 BaseModal.displayName = 'BaseModal'
-
-// BaseModal.propTypes = {
-//   currentToken: PropTypes.shape({
-//     name: PropTypes.string,
-//     icon: PropTypes.string.isRequired,
-//     balance: PropTypes.number,
-//   }),
-// }
-
-// BaseModal.defaultProps = {
-//   currentToken: { name: 'CELO', icon: '../../assets/CELO-color-icon.svg' },
-// }
 
 export default BaseModal

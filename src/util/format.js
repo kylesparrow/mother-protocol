@@ -21,3 +21,9 @@ export const formatToken = (amount, precision = 4) => {
   formatted = new BigNumber(formatted).toFixed(precision)
   return formatted
 }
+
+export const toTitleCase = (unformatted) => {
+  return unformatted.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+  })
+}

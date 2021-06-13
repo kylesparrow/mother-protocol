@@ -11,8 +11,10 @@ import Coins from '../components/shared/Coins'
 import BalanceDialog from '../components/balances/BalanceDialog'
 import MarketDialog from '../components/markets/MarketDialog'
 import { LEND, BORROW } from '../util/constants'
+import { IconTitle } from '../components/shared/interactive'
 
 export const initialState = {
+  isLoading: false,
   isOpen: false,
   currentToken: {},
   title: null,
@@ -41,33 +43,20 @@ export default function modalReducer(state, action) {
       }
     case BALANCE_CONTENT:
       return {
-        title: (
-          <span>
-            {Coins.MOM.icon}
-            {Coins.MOM.name} Balance
-          </span>
-        ),
+        title: <IconTitle icon={Coins.MOM.icon} title={`${Coins.MOM.name} Balance`} />,
         content: <BalanceDialog />,
       }
     case LEND_CONTENT:
       return {
-        title: (
-          <span>
-            {Coins[action.token].icon}
-            {Coins[action.token].name}
-          </span>
-        ),
+        title: <IconTitle icon={Coins[action.token].icon} title={Coins[action.token].name} />,
         content: <MarketDialog token={action.token} direction={LEND} />,
+        isLoading: true,
       }
     case BORROW_CONTENT:
       return {
-        title: (
-          <span>
-            {Coins[action.token].icon}
-            {Coins[action.token].name}
-          </span>
-        ),
+        title: <IconTitle icon={Coins[action.token].icon} title={Coins[action.token].name} />,
         content: <MarketDialog token={action.token} direction={BORROW} />,
+        isLoading: true,
       }
     default:
       return state

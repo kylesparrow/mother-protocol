@@ -41,3 +41,11 @@ export const formatPercent = (percent) => {
   formatted = `${parseFloat(formatted).toFixed(2)}%`
   return formatted
 }
+
+export const convertFromWei = (token) => {
+  if (BigNumber.isBigNumber(token)) {
+    const converted = token.toNumber() / 1e18
+    return converted
+  }
+  return null
+}

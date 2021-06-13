@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import Coins from '../shared/Coins'
+import { Row } from '../shared/layout'
 
 const Cell = styled.td`
   text-align: left;
-  padding: 1.2rem 1.6rem;
+  padding: 1.2rem;
   border-top: 1px solid #ccc;
   span {
     white-space: nowrap;
@@ -26,6 +28,10 @@ const TableRow = styled.tr`
   }
 `
 
+const IconLabel = styled(Row)`
+  align-items: center;
+`
+
 const TableContent = (props) => {
   const { assets, modalRef, direction } = props
 
@@ -38,10 +44,20 @@ const TableContent = (props) => {
             onClick={() => modalRef.current.openMarketModal(ticker, direction)}
             data-testid='markets-asset-row'
           >
-            <Cell data-testid='markets-asset-name'>{name}</Cell>
-            <Cell data-testid='markets-asset-apy'>{APY}</Cell>
-            <Cell data-testid='markets-asset-wallet'>{`${wallet} ${ticker}`}</Cell>
-            <Cell data-testid='markets-asset-liquidity'>{liquidity}</Cell>
+            <Cell data-testid='markets-asset-name'>
+              <IconLabel>
+                {Coins[ticker].icon} {name}
+              </IconLabel>
+            </Cell>
+            <Cell data-testid='markets-asset-apy'>
+              <span>{APY}</span>
+            </Cell>
+            <Cell data-testid='markets-asset-wallet'>
+              <span>{`${wallet} ${ticker}`}</span>
+            </Cell>
+            <Cell data-testid='markets-asset-liquidity'>
+              <span>{liquidity}</span>
+            </Cell>
           </TableRow>
         )
       })}

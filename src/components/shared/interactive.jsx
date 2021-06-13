@@ -58,6 +58,7 @@ export const Input = styled.input`
 const StyledRow = styled(Row)`
   width: 100%;
   justify-content: center;
+  align-items: center;
 `
 
 const StyledH2 = styled.h2`
@@ -69,14 +70,10 @@ const StyledH2 = styled.h2`
 
 export const TitleRow = (props) => {
   const { children } = props
-  return (
-    <StyledRow data-testid='title-row'>
-      <StyledH2 data-testid='title'>{children}</StyledH2>
-    </StyledRow>
-  )
+  return <StyledRow data-testid='title-row'>{children}</StyledRow>
 }
 TitleRow.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
 }
 
 export const Title = (props) => {
@@ -85,37 +82,70 @@ export const Title = (props) => {
 }
 
 Title.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
 }
 
-export const IconStyles = {
+export const LargeIconStyles = {
   fontSize: '3rem',
   border: '3px solid #000',
   borderRadius: '100px',
   padding: '0.1rem 0.3rem',
 }
 
+export const ModalIconStyles = {
+  height: '15px',
+  width: '15px',
+  fontSize: '1rem',
+  borderRadius: '0',
+  padding: '0.3rem',
+}
+
 export const ExchangeIcon = (props) => {
-  const { image, styles } = props
-  let iconStyles
-  if (styles) {
-    iconStyles = { ...styles }
-  } else {
-    iconStyles = { ...IconStyles }
-  }
-  return <img src={image} alt='exchange-icon' style={iconStyles} />
+  const { image, style } = props
+  return <img src={image} alt='exchange-icon' style={style} />
 }
 
 ExchangeIcon.propTypes = {
   image: PropTypes.string.isRequired,
-  styles: PropTypes.objectOf(PropTypes.string),
+  style: PropTypes.objectOf(PropTypes.string),
 }
 
 ExchangeIcon.defaultProps = {
-  styles: {
-    fontSize: '3rem',
-    border: '3px solid #000',
-    borderRadius: '100px',
-    padding: '0.1rem 0.3rem',
-  },
+  style: { ...ModalIconStyles },
+}
+
+const IconTitleWrapper = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  font-size: 1.1.rem;
+`
+
+const IconWrapper = styled.span`
+  img {
+    font-size: 1rem;
+    width: 10px;
+    height: 10px;
+  }
+`
+
+const TitleWrapper = styled.span`
+  display: flex;
+  flex-flow: row nowrap;
+`
+
+export const IconTitle = (props) => {
+  const { icon, title } = props
+
+  return (
+    <IconTitleWrapper>
+      <IconWrapper>{icon}</IconWrapper>
+      <TitleWrapper>{title}</TitleWrapper>
+    </IconTitleWrapper>
+  )
+}
+
+IconTitle.propTypes = {
+  icon: PropTypes.element.isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
 }

@@ -15,11 +15,14 @@ import {
 import { LEND, BORROW } from '../../util/constants'
 
 const ModalContentStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+  },
   // FIXME: balance modal needs 8rem margin top
   // FIXME: balance modal needs 22rem width
   content: {
     position: 'fixed',
-    marginTop: '0.5rem',
+    marginTop: '2rem',
     marginRight: 'auto',
     marginLeft: 'auto',
     width: '18rem',
@@ -38,10 +41,10 @@ const Header = styled(Row)`
   align-items: center;
   justify-content: space-between;
   border-bottom: 0.25px solid rgba(0, 0, 0, 0.05);
-  padding: 0.5rem;
+  padding: 0.3rem 0.5rem 0.1rem;
 `
 
-const ModalTitle = styled(TitleRow)`
+const ModalTitleRow = styled(TitleRow)`
   position: absolute;
   left: 0;
   right: 0;
@@ -107,7 +110,7 @@ const BaseModal = forwardRef((props, ref) => {
     >
       <Column>
         <Header data-testid='modal-header'>
-          <ModalTitle data-testid='modal-title'>{modal.title}</ModalTitle>
+          <ModalTitleRow data-testid='modal-title'>{modal.title}</ModalTitleRow>
           <CloseX>
             <CloseButton
               data-testid='modal-close-btn'
